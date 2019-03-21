@@ -5,6 +5,7 @@ import requests
 import api_info
 import sqlite3
 import re
+import cx_Oracle
 #Name: Amanda Gomez
 #API: News
 #Oracle Autonomous Database
@@ -42,7 +43,6 @@ def get_headline(word):
     else:
         print('making new request')
         newskey= api_info.key #takes news key from api_info
-        #took place on Dec. 10th
         nresponse= getWithCaching('https://newsapi.org/v2/everything?q={}&from2017-12-10&sortBy=popularity&apiKey={}'.format(word,newskey))#add params to base url
         ndata=json.loads(nresponse)
         CACHE_DICTION[word]=ndata#adds data from selected url to CACHE_DICTION
@@ -52,8 +52,8 @@ def get_headline(word):
         cache_file.close()#closes file
     return ndata
 n=get_headline('dog')#grabs data for all headlines containing 'dog'
-#Creation of Articles sql table
-conn= sqlite3.connect('News_db.sqlite') #creation of 'FinalProject' SQL table
+#Creation of Articles table in SQL
+conn= sqlite3.connect('News_db.sqlite')
 cur= conn.cursor()
 
 cur.execute('DROP TABLE IF EXISTS Articles')#if Articles table exists, don't add another table
