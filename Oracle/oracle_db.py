@@ -5,10 +5,10 @@ import requests
 import api_info
 import sqlite3
 import re
-import cx_Oracle
+
 #Name: Amanda Gomez
 #API: News
-#Oracle Autonomous Database
+
 
 #Caching
 CACHE_FNAME = "dump.json" #creating json file
