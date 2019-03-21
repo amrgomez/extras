@@ -1,5 +1,3 @@
-import itertools
-import collections
 import json
 import requests
 import api_info
